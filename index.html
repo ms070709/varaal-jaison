@@ -1,95 +1,371 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10131f">
-  <meta name="description" content="A little website made to celebrate friendship.">
-  <title>For Our Memories</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="background-glow glow-one" aria-hidden="true"></div>
-  <div class="background-glow glow-two" aria-hidden="true"></div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <header class="topbar">
-    <a class="brand" href="#home" aria-label="Back to home"><span class="brand-mark">✦</span> OUR LITTLE CORNER</a>
-    <nav aria-label="Main navigation">
-      <a href="#message">Message</a>
-      <a href="#memory">Memory</a>
-      <a href="#song">Entry song</a>
-    </nav>
+  <title>Viral JSON | Memories</title>
+  <meta name="description" content="A personal website for friends, photos and memories.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --background: #f7f5f2;
+      --surface: #ffffff;
+      --text: #202020;
+      --muted: #77736e;
+      --accent: #293b50;
+      --border: #e8e4df;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1080px, 90%);
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: #454545;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      padding: 66px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 5.5vw, 64px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .hero-description {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 28px;
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      border: 1px solid var(--accent);
+      padding: 12px 21px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: #1c2b3c;
+    }
+
+    .hero-image {
+      background: #e9e5df;
+      border-radius: 8px;
+      overflow: hidden;
+      min-height: 280px;
+    }
+
+    .hero-image img {
+      display: block;
+      width: 100%;
+      height: 390px;
+      object-fit: cover;
+    }
+
+    section {
+      padding: 42px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 24px;
+    }
+
+    .section-heading h2 {
+      font-size: 30px;
+      letter-spacing: -0.8px;
+      margin-bottom: 7px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .about-card,
+    .music-card,
+    .memory-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 26px;
+    }
+
+    .about-card p {
+      color: #5f5b56;
+      max-width: 760px;
+    }
+
+    .music-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .music-card h3 {
+      margin-bottom: 5px;
+    }
+
+    .music-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .music-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    audio {
+      width: min(100%, 320px);
+    }
+
+    .memory-card {
+      text-align: center;
+    }
+
+    .memory-card p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding: 25px 0;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        padding: 17px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .hero-image img {
+        height: 300px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+
+      .music-card {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+      <a class="brand" href="#home">VIRAL JSON</a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#music">Music</a>
+        <a href="#memories">Memories</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="home">
-    <section class="hero section-wrap">
-      <p class="eyebrow"><span class="eyebrow-dot"></span> MADE WITH FRIENDSHIP</p>
-      <h1>Some people make<br>ordinary days <span>memorable.</span></h1>
-      <p class="hero-copy">A small corner of the internet for the people, laughs and memories that mean a lot.</p>
-      <a class="primary-link" href="#message">A message for you <span aria-hidden="true">↓</span></a>
-      <div class="hero-note"><span class="note-line"></span> THE GOOD TIMES, ALL IN ONE PLACE</div>
-    </section>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
 
-    <section id="message" class="message-card section-wrap">
-      <div class="section-label">01 / A LITTLE MESSAGE</div>
-      <div class="message-layout">
         <div>
-          <p class="script-word">Dear friends,</p>
-          <h2>Thanks for being<br>part of the story.</h2>
+          <p class="eyebrow">A personal corner of the internet</p>
+
+          <h1>Good times.<br>Great memories.</h1>
+
+          <p class="hero-description">
+            A little place to celebrate friendship, share memories
+            and keep the moments that matter close.
+          </p>
+
+          <a class="button" href="#memories">Explore the page</a>
         </div>
-        <div class="message-copy">
-          <p>Life gets better when it is shared with the right people. Thank you for the laughs, the random moments, the support and the memories that are now part of our story.</p>
-          <p>This website is a little reminder that the best moments are often the ones we never planned.</p>
-          <p class="signature">With appreciation <span>✦</span></p>
+
+        <div class="hero-image">
+          <img
+            src="assets/friend-photo.jpg"
+            alt="A special memory"
+            onerror="this.style.display='none'; this.parentElement.style.minHeight='280px';"
+          >
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <h2>About this page</h2>
+          <p>A simple website made to keep memories alive.</p>
+        </div>
+
+        <div class="about-card">
+          <p>
+            Some moments are worth keeping forever. This website is
+            a small collection of friendship, good times and memories.
+            It is a place to revisit special moments and celebrate
+            the people who make life memorable.
+          </p>
         </div>
       </div>
     </section>
 
-    <section id="memory" class="memory-section section-wrap">
-      <div class="section-label">02 / ONE FOR THE MEMORIES</div>
-      <div class="section-heading">
-        <h2>Captured once.<br><span>Kept forever.</span></h2>
-        <p>One photo, one memory, a thousand stories behind it.</p>
-      </div>
-      <figure class="photo-frame">
-        <img src="assets/friend-photo.jpg" alt="The original friends photo" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
-        <div class="photo-placeholder" hidden>
-          <span class="placeholder-icon">✦</span>
-          <strong>Your original photo goes here</strong>
-          <span>Replace assets/friend-photo.jpg with your photo.</span>
+    <section id="music">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Our soundtrack</h2>
+          <p>Play the song whenever you want to revisit the moment.</p>
         </div>
-        <figcaption><span>THE ORIGINAL MEMORY</span><span>♥ FRIENDS, ALWAYS</span></figcaption>
-      </figure>
-    </section>
 
-    <section id="song" class="song-section section-wrap">
-      <div class="song-card">
-        <div class="song-art" aria-hidden="true"><span>♫</span></div>
-        <div class="song-info">
-          <div class="section-label">03 / PRESS PLAY</div>
-          <h2>Our entry song</h2>
-          <p>A soundtrack for a memory worth keeping.</p>
-          <audio id="entryAudio" controls preload="metadata">
-            <source src="assets/entry-song.mp3" type="audio/mpeg">
-            Your browser does not support audio playback.
-          </audio>
-          <small>The song is fixed by the website owner. Visitors cannot upload, replace or remove it.</small>
+        <div class="music-card">
+          <div>
+            <h3>Entry Song</h3>
+            <p>Press play to listen.</p>
+          </div>
+
+          <div class="music-controls">
+            <audio controls preload="none">
+              <source src="assets/entry-song.mp3" type="audio/mpeg">
+              Your browser does not support audio playback.
+            </audio>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="closing section-wrap">
-      <div class="closing-star">✦</div>
-      <p class="eyebrow">UNTIL THE NEXT MEMORY</p>
-      <h2>Different days.<br><span>Same people in our hearts.</span></h2>
-      <p>Thanks for being you.</p>
+    <section id="memories">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Memories</h2>
+          <p>A space for the moments you never want to forget.</p>
+        </div>
+
+        <div class="memory-card">
+          <p>
+            Every great story is made up of little moments.
+            Keep making memories worth remembering.
+          </p>
+
+          <a class="button" href="#home">Back to top</a>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <span>MADE WITH ♥ FOR FRIENDSHIP</span>
-    <a href="#home">BACK TO TOP ↑</a>
+  <footer>
+    <div class="container">
+      <p>Viral JSON &copy; <span id="year"></span>. Made with care.</p>
+    </div>
   </footer>
-  <script src="script.js"></script>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
 </body>
 </html>
