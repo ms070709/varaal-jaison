@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+
+:root {
+  --bg: #10131f;
+  --panel: #171b2a;
+  --text: #f6f2ea;
+  --muted: #a7adbd;
+  --gold: #e8c98b;
+  --line: rgba(255,255,255,.12);
+  --max: 1100px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: "DM Sans", sans-serif; line-height: 1.65; overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+.background-glow { position: absolute; width: 420px; height: 420px; border-radius: 50%; filter: blur(110px); opacity: .13; pointer-events: none; }
+.glow-one { background: #b38a4a; top: 90px; left: -180px; }
+.glow-two { background: #555dc8; top: 650px; right: -240px; }
+.topbar { width: min(var(--max), calc(100% - 48px)); margin: auto; min-height: 84px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); position: relative; z-index: 1; }
+.brand { font-size: .72rem; letter-spacing: .16em; font-weight: 700; }
+.brand-mark { color: var(--gold); margin-right: 8px; font-size: 1.2rem; }
+nav { display: flex; gap: 30px; color: var(--muted); font-size: .85rem; }
+nav a:hover, .footer a:hover { color: var(--gold); }
+.section-wrap { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
+.hero { min-height: 610px; padding-top: 125px; padding-bottom: 90px; position: relative; }
+.eyebrow, .section-label, .hero-note, figcaption, .footer { font-size: .68rem; letter-spacing: .16em; font-weight: 700; }
+.eyebrow { color: var(--gold); }
+.eyebrow-dot { display: inline-block; width: 7px; height: 7px; background: var(--gold); border-radius: 50%; margin-right: 9px; vertical-align: 1px; }
+h1, h2 { font-family: "Playfair Display", Georgia, serif; font-weight: 500; letter-spacing: -.035em; line-height: 1.12; }
+h1 { font-size: clamp(3.1rem, 7vw, 6.3rem); max-width: 900px; margin: 26px 0; }
+h1 span, h2 span { color: var(--gold); font-style: italic; }
+.hero-copy { max-width: 480px; color: var(--muted); font-size: 1.02rem; }
+.primary-link { display: inline-flex; align-items: center; gap: 28px; margin-top: 25px; padding: 13px 18px; border: 1px solid rgba(232,201,139,.6); border-radius: 3px; color: var(--gold); font-size: .86rem; }
+.primary-link:hover { background: rgba(232,201,139,.1); }
+.hero-note { position: absolute; right: 0; bottom: 78px; color: #777f91; font-size: .59rem; }
+.note-line { display: inline-block; width: 42px; height: 1px; background: var(--gold); vertical-align: middle; margin-right: 10px; }
+.message-card { background: linear-gradient(135deg, rgba(255,255,255,.055), rgba(255,255,255,.018)); border: 1px solid var(--line); padding: clamp(26px, 5vw, 58px); }
+.section-label { color: var(--gold); }
+.message-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; padding-top: 38px; }
+.script-word { font-family: "Playfair Display", Georgia, serif; font-style: italic; color: var(--gold); font-size: 1.45rem; margin: 0 0 10px; }
+h2 { font-size: clamp(2.3rem, 4.2vw, 4rem); margin: 0; }
+.message-copy { color: var(--muted); max-width: 470px; }
+.signature { color: var(--text); font-family: "Playfair Display", Georgia, serif; font-style: italic; font-size: 1.15rem; margin-top: 28px; }
+.signature span { color: var(--gold); margin-left: 8px; }
+.memory-section { padding-top: 120px; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 28px; margin: 32px 0; }
+.section-heading p { color: var(--muted); max-width: 260px; margin: 0 0 6px; }
+.photo-frame { margin: 0; padding: 12px; background: #191d2b; border: 1px solid var(--line); }
+.photo-frame img { width: 100%; max-height: 680px; object-fit: contain; display: block; background: #0c0e16; }
+.photo-placeholder { min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; color: var(--muted); background: #111522; }
+.photo-placeholder[hidden] { display: none; }
+.photo-placeholder strong { color: var(--text); }
+.placeholder-icon { font-size: 2rem; color: var(--gold); }
+figcaption { display: flex; justify-content: space-between; gap: 10px; padding: 15px 5px 4px; color: #858c9d; font-size: .58rem; }
+.song-section { padding-top: 100px; }
+.song-card { display: grid; grid-template-columns: 220px 1fr; gap: 36px; align-items: center; padding: clamp(24px, 5vw, 48px); border: 1px solid var(--line); background: var(--panel); }
+.song-art { aspect-ratio: 1; display: grid; place-items: center; background: radial-gradient(circle at 35% 25%, #57506c, #29243b 50%, #171a27); border: 1px solid rgba(232,201,139,.3); }
+.song-art span { font-size: 4rem; color: var(--gold); }
+.song-info h2 { font-size: 2.5rem; margin-top: 12px; }
+.song-info p, .song-info small { color: var(--muted); }
+audio { display: block; width: min(100%, 440px); margin: 22px 0 12px; }
+.song-info small { display: block; max-width: 470px; font-size: .75rem; }
+.closing { text-align: center; padding-top: 130px; padding-bottom: 120px; }
+.closing-star { color: var(--gold); font-size: 2rem; margin-bottom: 18px; }
+.closing h2 { margin: 24px 0; }
+.closing > p:last-child { color: var(--muted); }
+.footer { width: min(var(--max), calc(100% - 48px)); margin: auto; padding: 24px 0; display: flex; justify-content: space-between; gap: 20px; color: #858c9d; border-top: 1px solid var(--line); font-size: .6rem; }
+@media (max-width: 680px) {
+  .topbar { width: calc(100% - 32px); min-height: 72px; align-items: flex-start; justify-content: center; flex-direction: column; gap: 9px; padding: 12px 0; }
+  nav { gap: 18px; font-size: .78rem; }
+  .section-wrap { width: calc(100% - 32px); }
+  .hero { min-height: 560px; padding-top: 100px; }
+  .hero-note { position: static; margin-top: 60px; }
+  .message-layout { grid-template-columns: 1fr; gap: 20px; }
+  .section-heading { display: block; }
+  .section-heading p { margin-top: 18px; }
+  .song-card { grid-template-columns: 1fr; gap: 24px; }
+  .song-art { max-width: 180px; }
+  .footer { width: calc(100% - 32px); font-size: .53rem; }
+}
